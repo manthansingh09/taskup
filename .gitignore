@@ -1,0 +1,16 @@
+# Node.js dependencies (NPM installs these, no need to push)
+node_modules/
+
+# Local JSON database storage (prevents committing client lead data)
+data/
+
+# Environment files (for API keys/secrets)
+.env
+.env.local
+.env.production
+.env.development
+
+# OS-specific temporary files
+.DS_Store
+Thumbs.db
+desktop.ini

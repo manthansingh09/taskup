@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskUp Global | Operations Admin Portal</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="icon" type="image/png" href="images/TaskUp Solutions Logo Main.png">
+  <style>
+    /* Admin Specific Styling (Premium Dark/Teal Hybrid Board) */
+    body {
+      background-color: #041424;
+      color: #CBD5E1;
+      font-family: 'Inter', sans-serif;
+      padding-top: 100px;
+    }
+    
+    .admin-header {
+      background-color: #0A2540;
+      border-bottom: 1px solid #1E3551;
+      padding: 20px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+    }
+    
+    .admin-logo {
+      color: #FFFFFF;
+      font-size: 1.3rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .admin-logo span {
+      color: var(--accent-base);
+    }
+    
+    .admin-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    
+    .admin-dashboard-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+      margin-top: 20px;
+    }
+    
+    .admin-dashboard-title h2 {
+      color: #FFFFFF;
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+    
+    .admin-controls-top {
+      display: flex;
+      gap: 12px;
+    }
+    
+    /* Summary Stats Row */
+    .admin-stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    
+    .admin-stat-card {
+      background: #10243C;
+      border: 1px solid #1E3551;
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .admin-stat-card::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 4px;
+      background-color: var(--accent-base);
+    }
+    
+    .admin-stat-card.blue::after {
+      background-color: #3B82F6;
+    }
+    
+    .admin-stat-card.green::after {
+      background-color: #10B981;
+    }
+    
+    .admin-stat-card.purple::after {
+      background-color: #8B5CF6;
+    }
+    
+    .admin-stat-label {
+      color: #64748B;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .admin-stat-number {
+      font-size: 2rem;
+      color: #FFFFFF;
+      font-weight: 800;
+      font-family: var(--font-heading);
+    }
+    
+    .admin-stat-desc {
+      font-size: 0.8rem;
+      color: #94A3B8;
+    }
+    
+    /* Operations Panel */
+    .admin-panel {
+      background-color: #0A2540;
+      border: 1px solid #1E3551;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 60px;
+      overflow: hidden;
+    }
+    
+    .admin-panel-tabs {
+      display: flex;
+      background-color: #071527;
+      border-bottom: 1px solid #1E3551;
+      padding: 0 16px;
+    }
+    
+    .admin-tab-btn {
+      background: none;
+      border: none;
+      color: #94A3B8;
+      padding: 18px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: var(--transition-smooth);
+    }
+    
+    .admin-tab-btn.active {
+      color: var(--accent-base);
+      border-bottom-color: var(--accent-base);
+    }
+    
+    .admin-tab-btn:hover {
+      color: #FFFFFF;
+    }
+    
+    /* Filters and Search toolbar */
+    .admin-toolbar {
+      padding: 24px;
+      border-bottom: 1px solid #1E3551;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+      background-color: #0A2540;
+    }
+    
+    .admin-search-box {
+      flex: 1;
+      max-width: 450px;
+      position: relative;
+    }
+    
+    .admin-search-input {
+      width: 100%;
+      background-color: #10243C;
+      border: 1px solid #1E3551;
+      padding: 12px 16px 12px 40px;
+      color: #FFFFFF;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+    }
+    
+    .admin-search-input:focus {
+      outline: none;
+      border-color: var(--accent-base);
+    }
+    
+    .admin-search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      fill: #64748B;
+    }
+    
+    .admin-filter-group {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .admin-select {
+      background-color: #10243C;
+      border: 1px solid #1E3551;
+      padding: 12px 16px;
+      color: #FFFFFF;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    
+    /* Table Styling */
+    .admin-table-container {
+      overflow-x: auto;
+      min-height: 250px;
+    }
+    
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    
+    .admin-table th {
+      background-color: #071527;
+      color: #FFFFFF;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 16px 24px;
+      border-bottom: 1px solid #1E3551;
+    }
+    
+    .admin-table td {
+      padding: 18px 24px;
+      border-bottom: 1px solid #1E3551;
+      font-size: 0.9rem;
+      vertical-align: middle;
+      color: #CBD5E1;
+    }
+    
+    .admin-table tr:hover td {
+      background-color: #10243C;
+    }
+    
+    .lead-id {
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: var(--accent-base);
+      background-color: rgba(0, 168, 150, 0.1);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+    
+    .service-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-right: 4px;
+      margin-bottom: 4px;
+      background-color: #1E3551;
+      color: #E2E8F0;
+    }
+    
+    .service-tag.va { background-color: rgba(59, 130, 246, 0.2); color: #93C5FD; }
+    .service-tag.developer { background-color: rgba(139, 92, 246, 0.2); color: #C084FC; }
+    .service-tag.bookkeeper { background-color: rgba(16, 185, 129, 0.2); color: #6EE7B7; }
+    .service-tag.marketer { background-color: rgba(245, 158, 11, 0.2); color: #FDE047; }
+    
+    .admin-btn {
+      background-color: var(--accent-base);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition-smooth);
+    }
+    
+    .admin-btn:hover {
+      background-color: var(--accent-light);
+    }
+    
+    .admin-btn-danger {
+      background-color: #EF4444;
+    }
+    
+    .admin-btn-danger:hover {
+      background-color: #F87171;
+    }
+    
+    .admin-btn-secondary {
+      background-color: #1E3551;
+      border: 1px solid #334155;
+    }
+    
+    .admin-btn-secondary:hover {
+      background-color: #334155;
+    }
+    
+    .notes-box {
+      max-width: 280px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer;
+    }
+    
+    .notes-box:hover {
+      white-space: normal;
+      color: #FFFFFF;
+    }
+    
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 24px;
+      text-align: center;
+    }
+    
+    .empty-state svg {
+      width: 48px;
+      height: 48px;
+      fill: #64748B;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Admin Navigation Header -->
+  <header class="admin-header">
+    <div class="admin-container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+      <a href="/index.html" class="admin-logo">
+        <img src="images/TaskUp Solutions Logo Main.png" alt="TaskUp Global" style="height: 40px; width: auto; display: block; object-fit: contain; margin-right: 10px;">
+        <span style="font-size: 0.9rem; font-weight: 600; color: #CBD5E1; opacity: 0.8; letter-spacing: 0.05em; text-transform: uppercase;">Operations Portal</span>
+      </a>
+      <div>
+        <button class="admin-btn admin-btn-secondary" onclick="window.location.href='/index.html'">View Client Website</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-container">
+    
+    <!-- Title and Top Controls -->
+    <div class="admin-dashboard-title">
+      <div>
+        <h2>Operations Dashboard</h2>
+        <p style="color: #94A3B8;">Real-time persistence board for client quote wizard entries and trial bookings.</p>
+      </div>
+      <div class="admin-controls-top">
+        <button class="admin-btn admin-btn-secondary" onclick="exportLeads()">Export all to CSV</button>
+        <button class="admin-btn admin-btn-danger" onclick="clearDatabases()">Reset Leads DB</button>
+      </div>
+    </div>
+
+    <!-- Stats Summary Panel -->
+    <section class="admin-stats-row">
+      <div class="admin-stat-card blue">
+        <span class="admin-stat-label">Total Leads Logged</span>
+        <span class="admin-stat-number" id="statTotalLeads">0</span>
+        <span class="admin-stat-desc">Combined quotes & calls</span>
+      </div>
+      <div class="admin-stat-card green">
+        <span class="admin-stat-label">Quote Inquiries</span>
+        <span class="admin-stat-number" id="statQuotes">0</span>
+        <span class="admin-stat-desc">From pricing wizard flow</span>
+      </div>
+      <div class="admin-stat-card purple">
+        <span class="admin-stat-label">Booked Calls</span>
+        <span class="admin-stat-number" id="statBookings">0</span>
+        <span class="admin-stat-desc">Mock Calendly events</span>
+      </div>
+      <div class="admin-stat-card">
+        <span class="admin-stat-label">Conversion Rate</span>
+        <span class="admin-stat-number" id="statConversion">0%</span>
+        <span class="admin-stat-desc">Lead conversion index</span>
+      </div>
+    </section>
+
+    <!-- Operations Panel Board -->
+    <section class="admin-panel">
+      <!-- Tabs -->
+      <div class="admin-panel-tabs">
+        <button class="admin-tab-btn active" id="tabQuotesBtn" onclick="switchAdminTab('quotes')">Quote Inquiries</button>
+        <button class="admin-tab-btn" id="tabBookingsBtn" onclick="switchAdminTab('bookings')">Trial Bookings</button>
+      </div>
+
+      <!-- Search and Filter Toolbar -->
+      <div class="admin-toolbar">
+        <div class="admin-search-box">
+          <svg class="admin-search-icon" viewBox="0 0 24 24">
+            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+          <input type="text" class="admin-search-input" id="adminSearch" placeholder="Search by name, company, or email..." oninput="filterLeads()">
+        </div>
+        
+        <div class="admin-filter-group" id="quoteFilterGroup">
+          <select class="admin-select" id="filterService" onchange="filterLeads()">
+            <option value="all">All Services Needed</option>
+            <option value="Virtual Assistant">Virtual Assistant</option>
+            <option value="Software Developer">Software Developer</option>
+            <option value="Bookkeeper">Certified Bookkeeper</option>
+            <option value="Digital Marketer">Digital Marketer</option>
+          </select>
+          <select class="admin-select" id="filterScale" onchange="filterLeads()">
+            <option value="all">Any Team Size</option>
+            <option value="1">1 Professional</option>
+            <option value="2">2-5 Professionals</option>
+            <option value="5">5+ (Enterprise)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Tab Content 1: Quotes Table -->
+      <div class="admin-table-container" id="quotesTabContent">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th style="width: 100px;">Lead ID</th>
+              <th>Date</th>
+              <th>Company & Client</th>
+              <th>Contact info</th>
+              <th>Services</th>
+              <th>Team Size</th>
+              <th>Timeline</th>
+              <th>Client Notes</th>
+            </tr>
+          </thead>
+          <tbody id="quotesTableBody">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Tab Content 2: Bookings Table -->
+      <div class="admin-table-container" id="bookingsTabContent" style="display: none;">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th style="width: 100px;">Booking ID</th>
+              <th>Scheduled Time (EST)</th>
+              <th>Scheduled Date</th>
+              <th>Client Name</th>
+              <th>Company Name</th>
+              <th>Contact Email</th>
+              <th>Created At</th>
+            </tr>
+          </thead>
+          <tbody id="bookingsTableBody">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    let activeTab = 'quotes';
+    let allLeads = { quotes: [], bookings: [] };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadLeadsData();
+    });
+
+    async function loadLeadsData() {
+      try {
+        const response = await fetch('/api/admin/leads');
+        if (response.status === 401) {
+          // Trigger browser basic authentication popup
+          window.location.reload();
+          return;
+        }
+        
+        const resData = await response.json();
+        if (resData.success) {
+          allLeads = {
+            quotes: resData.quotes || [],
+            bookings: resData.bookings || []
+          };
+          updateStats();
+          renderLeads();
+        }
+      } catch (error) {
+        console.error('Error fetching admin data:', error);
+      }
+    }
+
+    function updateStats() {
+      const qCount = allLeads.quotes.length;
+      const bCount = allLeads.bookings.length;
+      const total = qCount + bCount;
+
+      document.getElementById('statTotalLeads').innerText = total;
+      document.getElementById('statQuotes').innerText = qCount;
+      document.getElementById('statBookings').innerText = bCount;
+      
+      // Calculate mock conversion index (percentage of quote leads that booked a call)
+      const conv = qCount > 0 ? Math.round((bCount / qCount) * 100) : 0;
+      document.getElementById('statConversion').innerText = conv + '%';
+    }
+
+    function switchAdminTab(tab) {
+      activeTab = tab;
+      
+      const qTab = document.getElementById('quotesTabContent');
+      const bTab = document.getElementById('bookingsTabContent');
+      const qBtn = document.getElementById('tabQuotesBtn');
+      const bBtn = document.getElementById('tabBookingsBtn');
+      const filterGroup = document.getElementById('quoteFilterGroup');
+
+      if (tab === 'quotes') {
+        qTab.style.display = 'block';
+        bTab.style.display = 'none';
+        qBtn.classList.add('active');
+        bBtn.classList.remove('active');
+        filterGroup.style.display = 'flex';
+      } else {
+        qTab.style.display = 'none';
+        bTab.style.display = 'block';
+        qBtn.classList.remove('active');
+        bBtn.classList.add('active');
+        filterGroup.style.display = 'none';
+      }
+
+      filterLeads();
+    }
+
+    function getServiceClass(svc) {
+      if (svc.includes('Assistant')) return 'va';
+      if (svc.includes('Developer')) return 'developer';
+      if (svc.includes('Bookkeeper')) return 'bookkeeper';
+      if (svc.includes('Marketer')) return 'marketer';
+      return '';
+    }
+
+    function renderLeads(filteredQuotes = allLeads.quotes, filteredBookings = allLeads.bookings) {
+      const quotesBody = document.getElementById('quotesTableBody');
+      const bookingsBody = document.getElementById('bookingsTableBody');
+
+      // Clear tables
+      quotesBody.innerHTML = '';
+      bookingsBody.innerHTML = '';
+
+      // Render Quotes
+      if (filteredQuotes.length === 0) {
+        quotesBody.innerHTML = `
+          <tr>
+            <td colspan="8">
+              <div class="empty-state">
+                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+                <h4 style="color: #FFFFFF;">No Quote Inquiries Found</h4>
+                <p style="color: #64748B;">No records match your filters or search query.</p>
+              </div>
+            </td>
+          </tr>
+        `;
+      } else {
+        filteredQuotes.forEach(lead => {
+          const formattedDate = new Date(lead.timestamp).toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+          });
+
+          const tagsHTML = lead.services.map(svc => `
+            <span class="service-tag ${getServiceClass(svc)}">${svc}</span>
+          `).join('');
+
+          quotesBody.innerHTML += `
+            <tr>
+              <td><span class="lead-id">${lead.id.substring(0, 7)}</span></td>
+              <td><span style="font-weight: 500;">${formattedDate}</span></td>
+              <td>
+                <div style="font-weight: 700; color: #FFFFFF; font-size: 0.95rem;">${lead.company}</div>
+                <div style="color: #94A3B8; font-size: 0.8rem; margin-top: 2px;">Contact: ${lead.name}</div>
+              </td>
+              <td>
+                <div>${lead.email}</div>
+                <div style="color: #94A3B8; font-size: 0.8rem; margin-top: 2px;">${lead.phone}</div>
+              </td>
+              <td>${tagsHTML}</td>
+              <td><span style="font-weight: 600;">${lead.teamSize}</span></td>
+              <td><span class="service-tag va">${lead.timeline}</span></td>
+              <td><div class="notes-box" title="${lead.notes || 'No extra notes provided'}">${lead.notes || '<span style="color: #475569;">No notes</span>'}</div></td>
+            </tr>
+          `;
+        });
+      }
+
+      // Render Bookings
+      if (filteredBookings.length === 0) {
+        bookingsBody.innerHTML = `
+          <tr>
+            <td colspan="7">
+              <div class="empty-state">
+                <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10z"/></svg>
+                <h4 style="color: #FFFFFF;">No Call Bookings Logged</h4>
+                <p style="color: #64748B;">No discovery call registrations matching selection.</p>
+              </div>
+            </td>
+          </tr>
+        `;
+      } else {
+        filteredBookings.forEach(booking => {
+          const formattedCreated = new Date(booking.timestamp).toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric'
+          });
+
+          bookingsBody.innerHTML += `
+            <tr>
+              <td><span class="lead-id">${booking.id.substring(0, 7)}</span></td>
+              <td><strong style="color: var(--accent-light);">${booking.time}</strong></td>
+              <td><span style="font-weight: 700; color: white;">${booking.date}</span></td>
+              <td><span style="font-weight: 600;">${booking.name}</span></td>
+              <td>${booking.company}</td>
+              <td>${booking.email}</td>
+              <td><span style="color: #94A3B8; font-size: 0.8rem;">${formattedCreated}</span></td>
+            </tr>
+          `;
+        });
+      }
+    }
+
+    function filterLeads() {
+      const searchVal = document.getElementById('adminSearch').value.toLowerCase();
+      
+      if (activeTab === 'quotes') {
+        const serviceVal = document.getElementById('filterService').value;
+        const scaleVal = document.getElementById('filterScale').value;
+
+        const filteredQuotes = allLeads.quotes.filter(lead => {
+          // Search string match
+          const matchesSearch = 
+            lead.name.toLowerCase().includes(searchVal) ||
+            lead.company.toLowerCase().includes(searchVal) ||
+            lead.email.toLowerCase().includes(searchVal) ||
+            lead.id.toLowerCase().includes(searchVal);
+
+          // Service category filter
+          const matchesService = serviceVal === 'all' || lead.services.includes(serviceVal);
+
+          // Team size scale filter
+          let matchesScale = true;
+          if (scaleVal === '1') {
+            matchesScale = lead.teamSize.includes('1 Dedicated') || lead.teamSize.includes('1 VA');
+          } else if (scaleVal === '2') {
+            matchesScale = lead.teamSize.includes('2-3') || lead.teamSize.includes('4-5');
+          } else if (scaleVal === '5') {
+            matchesScale = lead.teamSize.includes('5+') || lead.teamSize.includes('Enterprise');
+          }
+
+          return matchesSearch && matchesService && matchesScale;
+        });
+
+        renderLeads(filteredQuotes, allLeads.bookings);
+      } else {
+        const filteredBookings = allLeads.bookings.filter(lead => {
+          return (
+            lead.name.toLowerCase().includes(searchVal) ||
+            lead.company.toLowerCase().includes(searchVal) ||
+            lead.email.toLowerCase().includes(searchVal) ||
+            lead.id.toLowerCase().includes(searchVal) ||
+            lead.date.toLowerCase().includes(searchVal)
+          );
+        });
+
+        renderLeads(allLeads.quotes, filteredBookings);
+      }
+    }
+
+    async function clearDatabases() {
+      if (!confirm('Are you sure you want to clear lead persistence tables? This action is irreversible.')) {
+        return;
+      }
+
+      try {
+        const response = await fetch('/api/admin/clear', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ type: 'all' })
+        });
+        const resData = await response.json();
+        if (resData.success) {
+          alert('Lead persistence tables successfully cleared.');
+          loadLeadsData();
+        }
+      } catch (error) {
+        console.error('Error clearing data:', error);
+      }
+    }
+
+    function exportLeads() {
+      let csvContent = "data:text/csv;charset=utf-8,";
+      
+      if (activeTab === 'quotes') {
+        csvContent += "Lead ID,Date,Client Name,Company,Email,Phone,Services,Team Size,Timeline,Notes\r\n";
+        allLeads.quotes.forEach(row => {
+          const servicesJoined = row.services.join('; ');
+          const dateStr = new Date(row.timestamp).toLocaleDateString();
+          csvContent += `"${row.id}","${dateStr}","${row.name}","${row.company}","${row.email}","${row.phone}","${servicesJoined}","${row.teamSize}","${row.timeline}","${row.notes.replace(/"/g, '""')}"\r\n`;
+        });
+      } else {
+        csvContent += "Booking ID,Date Booked,Time Slot,Client Name,Company,Email,Created At\r\n";
+        allLeads.bookings.forEach(row => {
+          const dateCreated = new Date(row.timestamp).toLocaleDateString();
+          csvContent += `"${row.id}","${row.date}","${row.time}","${row.name}","${row.company}","${row.email}","${dateCreated}"\r\n`;
+        });
+      }
+
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", `taskup_leads_export_${activeTab}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  </script>
+</body>
+</html>
