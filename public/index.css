@@ -2857,3 +2857,301 @@ footer {
     padding: 32px 24px;
   }
 }
+
+/* ==========================================================================
+   Enhanced Mobile Responsiveness (768px and below)
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* -- Global Spacing -- */
+  .section {
+    padding: 60px 0;
+  }
+  .container {
+    padding: 0 16px;
+  }
+
+  /* -- Hero Section -- */
+  .hero {
+    min-height: auto;
+    padding-top: 100px;
+    padding-bottom: 50px;
+  }
+  .hero-content h1 {
+    font-size: 2rem;
+    margin-bottom: 16px;
+  }
+  .hero-content p {
+    font-size: 1rem;
+    margin-bottom: 24px;
+  }
+  .hero-ctas {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .hero-ctas .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .dashboard-mockup img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* -- Section Headers -- */
+  .section-header {
+    margin-bottom: 36px;
+  }
+  .section-header h2 {
+    font-size: 1.7rem;
+  }
+  .section-header p {
+    font-size: 0.95rem;
+  }
+
+  /* -- Task Flow Section -- */
+  .task-flow-content h2 {
+    font-size: 1.7rem;
+  }
+  .task-flow-icon {
+    width: 48px;
+    height: 48px;
+  }
+  .task-flow-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  /* -- Industry Cards -- */
+  .industry-card {
+    padding: 24px 20px;
+  }
+  .industry-card h3 {
+    font-size: 1.05rem;
+  }
+
+  /* -- Calculator Section -- */
+  .calculator-box {
+    padding: 24px 16px;
+  }
+  .calculator-box h2 {
+    font-size: 1.5rem;
+  }
+
+  /* -- CTA Hub -- */
+  .cta-hub-panel {
+    padding: 30px 20px;
+  }
+  .cta-hub-panel h2 {
+    font-size: 1.5rem;
+  }
+
+  /* -- Modal Improvements -- */
+  .modal-container {
+    max-width: 95vw;
+    margin: 16px;
+  }
+  .modal-overlay {
+    padding: 16px;
+    align-items: center;
+  }
+  .modal-wizard-header {
+    padding: 20px;
+  }
+  .modal-wizard-header h3 {
+    font-size: 1.2rem;
+  }
+  .wizard-body {
+    padding: 20px;
+  }
+  .wizard-footer {
+    padding: 16px 20px;
+  }
+  .grid-2-col {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .form-control {
+    padding: 14px 16px;
+    font-size: 16px; /* Prevents iOS auto zoom */
+  }
+
+  /* -- Calendly Modal -- */
+  .calendly-mock-modal {
+    max-width: 95vw;
+  }
+  .mock-calendly-header {
+    padding: 16px 20px;
+  }
+  .mock-calendly-header h4 {
+    font-size: 1rem;
+  }
+
+  /* -- WhatsApp Widget -- */
+  .whatsapp-widget {
+    bottom: 20px;
+    right: 20px;
+  }
+  .whatsapp-bubble {
+    width: 50px;
+    height: 50px;
+  }
+  .whatsapp-bubble svg {
+    width: 26px;
+    height: 26px;
+  }
+  .whatsapp-tooltip {
+    display: none;
+  }
+
+  /* -- Legal Pages -- */
+  .legal-hero {
+    padding: 120px 0 50px 0;
+  }
+  .legal-hero h1 {
+    font-size: 2rem;
+  }
+  .legal-hero p {
+    font-size: 0.95rem;
+  }
+  .legal-content-wrapper {
+    padding: 40px 0;
+  }
+  .legal-text-box {
+    padding: 24px 16px;
+  }
+  .legal-section h2 {
+    font-size: 1.4rem;
+  }
+  .legal-section p {
+    font-size: 0.9rem;
+  }
+
+  /* -- Footer -- */
+  .footer-col h4 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+}
+
+/* ==========================================================================
+   Small Phone Breakpoint (480px and below)
+   ========================================================================== */
+@media (max-width: 480px) {
+  .hero {
+    padding-top: 90px;
+    padding-bottom: 40px;
+  }
+  .hero-content h1 {
+    font-size: 1.65rem;
+    letter-spacing: -0.01em;
+  }
+  .hero-content p {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+  .btn {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+  .section-header h2 {
+    font-size: 1.4rem;
+  }
+  .section-header p {
+    font-size: 0.85rem;
+  }
+  .task-flow-content h2 {
+    font-size: 1.4rem;
+  }
+
+  /* -- Stepper Process -- */
+  .stepper-panels {
+    padding: 16px;
+  }
+  .step-node {
+    gap: 10px;
+  }
+  .step-circle {
+    width: 36px;
+    height: 36px;
+    font-size: 0.85rem;
+  }
+  .step-node-title {
+    font-size: 0.8rem;
+  }
+
+  /* -- Trust Grid Items -- */
+  .trust-grid {
+    grid-template-columns: 1fr;
+  }
+  .trust-item {
+    border-right: none;
+  }
+
+  /* -- Tab Buttons -- */
+  .services-tabs {
+    gap: 6px;
+  }
+  .tab-btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+
+  /* -- Vetting Section -- */
+  .vetting-timeline {
+    grid-template-columns: 1fr;
+  }
+
+  /* -- Promises Section -- */
+  .promises-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* -- Calculator -- */
+  .calculator-box h2 {
+    font-size: 1.3rem;
+  }
+
+  /* -- CTA Hub -- */
+  .cta-hub-panel {
+    padding: 24px 16px;
+  }
+  .cta-hub-panel h2 {
+    font-size: 1.3rem;
+  }
+
+  /* -- Badge -- */
+  .badge {
+    font-size: 0.75rem;
+    padding: 5px 12px;
+  }
+
+  /* -- WhatsApp Widget -- */
+  .whatsapp-widget {
+    bottom: 16px;
+    right: 16px;
+  }
+  .whatsapp-bubble {
+    width: 46px;
+    height: 46px;
+    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.35);
+  }
+  .whatsapp-bubble svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* -- Legal Pages -- */
+  .legal-hero {
+    padding: 100px 0 40px 0;
+  }
+  .legal-hero h1 {
+    font-size: 1.6rem;
+  }
+  .legal-text-box {
+    padding: 20px 14px;
+  }
+  .legal-section h2 {
+    font-size: 1.2rem;
+  }
+}

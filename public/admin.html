@@ -348,6 +348,120 @@
       fill: #64748B;
       margin-bottom: 16px;
     }
+
+    /* ===== Admin Mobile Responsiveness ===== */
+    @media (max-width: 992px) {
+      .admin-stats-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding-top: 80px;
+      }
+      .admin-container {
+        padding: 0 12px;
+      }
+      .admin-dashboard-title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+      .admin-dashboard-title h2 {
+        font-size: 1.5rem;
+      }
+      .admin-controls-top {
+        width: 100%;
+        flex-wrap: wrap;
+      }
+      .admin-controls-top .admin-btn {
+        flex: 1;
+        justify-content: center;
+        font-size: 0.8rem;
+        padding: 10px 12px;
+      }
+      .admin-stats-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+      .admin-stat-card {
+        padding: 16px;
+      }
+      .admin-stat-number {
+        font-size: 1.5rem;
+      }
+      .admin-stat-label {
+        font-size: 0.75rem;
+      }
+      .admin-panel-tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 0 8px;
+      }
+      .admin-tab-btn {
+        padding: 14px 16px;
+        font-size: 0.85rem;
+        white-space: nowrap;
+      }
+      .admin-toolbar {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+      }
+      .admin-search-box {
+        max-width: 100%;
+      }
+      .admin-filter-group {
+        width: 100%;
+        flex-wrap: wrap;
+      }
+      .admin-select {
+        flex: 1;
+        min-width: 0;
+        font-size: 0.85rem;
+        padding: 10px 12px;
+      }
+      .admin-table th {
+        padding: 12px 16px;
+        font-size: 0.75rem;
+      }
+      .admin-table td {
+        padding: 12px 16px;
+        font-size: 0.8rem;
+      }
+      .notes-box {
+        max-width: 180px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .admin-stats-row {
+        grid-template-columns: 1fr;
+      }
+      .admin-stat-card {
+        padding: 14px;
+      }
+      .admin-stat-number {
+        font-size: 1.3rem;
+      }
+      .admin-controls-top {
+        flex-direction: column;
+      }
+      .admin-controls-top .admin-btn {
+        width: 100%;
+      }
+      .admin-header .admin-container > div:first-child > div,
+      .admin-header .admin-container > div:first-child > span {
+        display: none;
+      }
+      .admin-header .admin-container > div:last-child {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
