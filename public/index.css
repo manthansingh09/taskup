@@ -302,7 +302,7 @@ nav a:hover {
   border-right: 2px solid var(--text-secondary);
   border-bottom: 2px solid var(--text-secondary);
   transform: rotate(45deg);
-  margin-left: 6px;
+  margin-left: 12px;
   margin-bottom: 3px;
   transition: var(--transition-smooth);
 }
@@ -2607,7 +2607,7 @@ footer {
     display: block !important;
     width: 24px !important;
     height: 3px !important;
-    background-color: var(--primary-base) !important;
+    background-color: #0A2540 !important;
     border-radius: 2px;
     transition: all 0.3s ease;
     transform-origin: center;
