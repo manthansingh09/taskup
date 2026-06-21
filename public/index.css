@@ -2590,28 +2590,36 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     gap: 5px;
     width: 32px;
     height: 32px;
     z-index: 1100;
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    appearance: none;
+    -webkit-appearance: none;
   }
   .nav-toggle span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background-color: var(--primary-base);
+    display: block !important;
+    width: 24px !important;
+    height: 3px !important;
+    background-color: var(--primary-base) !important;
     border-radius: 2px;
     transition: all 0.3s ease;
     transform-origin: center;
   }
   .nav-toggle.active span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
+    transform: translateY(8px) rotate(45deg);
   }
   .nav-toggle.active span:nth-child(2) {
     opacity: 0;
   }
   .nav-toggle.active span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+    transform: translateY(-8px) rotate(-45deg);
   }
 
   /* -- Mobile Nav Panel (Clean White) -- */
