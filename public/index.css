@@ -2579,11 +2579,16 @@ footer {
     grid-template-columns: 1fr;
   }
   header {
-    background-color: var(--primary-base);
     padding: 10px 0;
+  }
+  .header-actions {
+    display: none;
   }
   .nav-toggle {
     display: block;
+  }
+  .nav-toggle span {
+    background-color: var(--primary-base);
   }
   nav {
     position: absolute;
@@ -2596,7 +2601,14 @@ footer {
     gap: 20px;
     border-bottom: 1px solid var(--border-dark);
     display: none;
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  }
+  nav a {
+    color: var(--text-white);
+    font-size: 1rem;
+  }
+  nav a:hover {
+    color: var(--accent-light);
   }
   nav.active {
     display: flex;
