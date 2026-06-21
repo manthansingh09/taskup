@@ -1,0 +1,17 @@
+{
+  "name": "taskup-global-backend",
+  "version": "1.0.0",
+  "description": "Premium BPO and Virtual Assistant persistence backend and dashboard",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "@supabase/supabase-js": "^2.43.4",
+    "dotenv": "^16.4.5",
+    "ws": "^8.18.0"
+  },
+  "author": "TaskUp Global Team",
+  "license": "ISC"
+}
