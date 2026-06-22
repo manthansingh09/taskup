@@ -234,7 +234,7 @@
         <h2>Leaders from 50+ Industries Trust Us</h2>
       </div>
 
-      <div class="industries-grid">
+      <div class="industries-grid" id="industriesGrid">
         <!-- Private Doctors -->
         <div class="industry-card">
           <div class="industry-icon">
@@ -252,14 +252,6 @@
             <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Appointment Automation</li>
             <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Patient Management</li>
           </ul>
-        </div>
-        <div class="industries-grid" id="industriesGrid">
-          <div class="industries-dots" id="industriesDots">
-            <span class="industries-dot active" data-index="0"></span>
-            <span class="industries-dot" data-index="1"></span>
-            <span class="industries-dot" data-index="2"></span>
-            <span class="industries-dot" data-index="3"></span>
-          </div>
         </div>
 
         <!-- Real Estate Agents -->
@@ -318,6 +310,12 @@
             <li><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>Brand Monitoring</li>
           </ul>
         </div>
+      </div>
+      <div class="industries-dots" id="industriesDots">
+        <span class="industries-dot active" data-index="0"></span>
+        <span class="industries-dot" data-index="1"></span>
+        <span class="industries-dot" data-index="2"></span>
+        <span class="industries-dot" data-index="3"></span>
       </div>
     </div>
   </section>
@@ -857,14 +855,14 @@
       </div>
 
       <!-- Vetting Team Photographic Banner -->
-      <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; margin-top: 80px; align-items: center;">
+      <div class="vetting-bottom-grid" style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; margin-top: 80px; align-items: center;">
         <div>
           <h3 style="font-size: 2rem; margin-bottom: 20px;">Vetted Under the Highest Standards</h3>
           <p style="margin-bottom: 24px; font-size: 1.05rem;">Every virtual assistant, developer, accountant, and marketing expert is matched based on a strict Standard Operating Procedure (SOP). We ensure that you bypass the trial-and-error of hiring and integrate a highly reliable member directly into your team.</p>
           <button class="btn btn-primary" onclick="toggleModal('calendlyModal')">Claim Your Free Trial</button>
         </div>
         <div>
-          <img src="images/vetting_team.png" alt="TaskUp Global Vetted Team" style="width: 100%; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); border: 1px solid var(--border-light); display: block;">
+          <img src="images/vetting_team.png" alt="TaskUp Global Vetted Team" class="vetting-team-img" style="width: 100%; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); border: 1px solid var(--border-light); display: block;">
         </div>
       </div>
     </div>

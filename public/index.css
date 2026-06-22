@@ -2615,6 +2615,50 @@ footer {
 }
 
 @media (max-width: 768px) {
+
+  .services-tabs {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border-bottom: none;
+    gap: 8px;
+    padding-bottom: 0;
+  }
+
+  .tab-btn {
+    text-align: center;
+    padding: 10px 18px;
+    border-radius: 50px;
+    background-color: var(--bg-card);
+    border: 1.5px solid var(--border-light) !important;
+    font-size: 0.88rem;
+    width: auto;
+  }
+
+  .tab-btn.active {
+    background-color: var(--accent-base);
+    border-color: var(--accent-base) !important;
+    color: var(--text-white);
+  }
+
+  .tab-btn::after {
+    display: none;
+  }
+
+  .vetting-team-img {
+    display: none;
+  }
+
+  .vetting-bottom-grid {
+    grid-template-columns: 1fr !important;
+    display: block !important;
+  }
+
+  .vetting-team-img {
+    display: none !important;
+  }
+
   .industries-grid {
   display: flex;
   overflow-x: auto;
@@ -2627,9 +2671,20 @@ footer {
   display: none;
 }
 .industry-card {
-  flex: 0 0 100%;
-  scroll-snap-align: center;
-}
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    text-align: center;
+    padding: 32px 24px;
+  }
+  .industry-icon {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .industry-checklist li {
+    justify-content: center;
+  }
+
 .industries-dots {
   display: flex;
   justify-content: center;
@@ -2714,15 +2769,20 @@ footer {
     flex-direction: column;
     padding: 80px 24px 32px 24px;
     gap: 0;
-    display: none;
     overflow-y: auto;
     z-index: 1050;
     border: none;
     box-shadow: none;
-  }
-
-  nav.active {
     display: flex;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+  }
+  nav.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
   }
 
   /* -- Nav Links -- */
@@ -2736,7 +2796,7 @@ footer {
     padding: 20px 4px;
     font-size: 1.15rem;
     font-weight: 700;
-    color: var(--primary-base);
+    color: var(--text-primary);
     transition: color 0.2s ease;
   }
 
@@ -2771,7 +2831,7 @@ footer {
   }
 
   /* -- Dropdown/Mega Sub-Panels -- */
-  .dropdown .dropdown-menu,
+.dropdown .dropdown-menu,
   .dropdown .mega-menu {
     display: none;
     opacity: 0;
@@ -2779,14 +2839,55 @@ footer {
     position: static;
     width: 100%;
     transform: none;
-    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.02);
-    background-color: #F1F5F9;
-    /* Distinct light gray for differentiation */
-    border: 1px solid var(--border-light);
+    background-color: rgba(0, 168, 150, 0.08);
+    border-left: 3px solid var(--accent-base);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(10, 37, 64, 0.1);
     border-radius: var(--radius-md);
     padding: 16px;
     margin: 4px 0 16px 0;
     transition: none;
+    box-shadow: none;
+  }
+
+  .dropdown.active-mobile .dropdown-menu,
+  .dropdown.active-mobile .mega-menu {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  nav .dropdown-link,
+  nav .mega-item strong,
+  nav .mega-title,
+  nav .mega-item span {
+    color: var(--primary-base) !important;
+  }
+
+  nav .mega-title {
+    color: var(--accent-base) !important;
+  }
+
+  nav .mega-item span {
+    color: var(--text-secondary) !important;
+  }
+
+  /* Arrow alignment fix */
+  .dropdown-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px 4px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--primary-base) !important;
+    gap: 12px;
+  }
+
+  .chevron {
+    flex-shrink: 0;
+    margin: 0;
   }
 
   .dropdown.active-mobile .dropdown-menu,
@@ -3095,6 +3196,32 @@ footer {
    Enhanced Mobile Responsiveness (768px and below)
    ========================================================================== */
 @media (max-width: 768px) {
+
+  .step-node-title {
+    color: var(--text-white);
+  }
+
+  .step-circle {
+    background-color: var(--bg-card-dark);
+    border-color: var(--border-dark);
+    color: var(--text-light-gray);
+  }
+
+  .step-node.active .step-circle {
+    background-color: var(--accent-base);
+    border-color: var(--accent-base);
+    color: var(--text-white);
+  }
+
+  .step-node.completed .step-circle {
+    background-color: var(--accent-base);
+    border-color: var(--accent-base);
+    color: var(--text-white);
+  }
+
+  .step-node.active .step-node-title {
+    color: var(--text-white);
+  }
 
   /* -- Global Spacing -- */
   .section {
